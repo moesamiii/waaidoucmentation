@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WhatsApp Cloud API Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- Background Pattern -->
+    <div class="bg-pattern"></div>
+
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <div class="header-icon">
+          <svg
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M30 55C43.8071 55 55 43.8071 55 30C55 16.1929 43.8071 5 30 5C16.1929 5 5 16.1929 5 30C5 34.4 6.2 38.5 8.3 42L5 55L18 51.7C21.5 53.8 25.6 55 30 55Z"
+              fill="white"
+              fill-opacity="0.2"
+            />
+            <path
+              d="M30 50C41.0457 50 50 41.0457 50 30C50 18.9543 41.0457 10 30 10C18.9543 10 10 18.9543 10 30C10 34 11.1 37.7 13 40.8L10.5 50L19.2 47.5C22.3 49.4 25.9 50 30 50Z"
+              fill="white"
+            />
+            <path
+              d="M23 20H37C38.1 20 39 20.9 39 22V38C39 39.1 38.1 40 37 40H23C21.9 40 21 39.1 21 38V22C21 20.9 21.9 20 23 20Z"
+              fill="#25D366"
+            />
+            <path d="M27 27L33 30L27 33V27Z" fill="white" />
+          </svg>
+        </div>
+        <h1>WhatsApp Cloud API Documentation</h1>
+        <p>Complete step-by-step guide (1 → 63)</p>
+        <div class="header-badges">
+          <span class="badge">Meta Official</span>
+          <span class="badge">Cloud API</span>
+          <span class="badge">Full Guide</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Quick Navigation -->
+      <nav class="quick-nav">
+        <h3>Quick Navigation</h3>
+        <ul>
+          <li><a href="#section-1">Create Meta App</a></li>
+          <li><a href="#section-2">Portfolio & Approval</a></li>
+          <li><a href="#section-3">Dashboard Setup</a></li>
+          <li><a href="#section-4">Testing & Tokens</a></li>
+          <li><a href="#section-5">Auto Reply Logic</a></li>
+          <li><a href="#section-6">Webhook Concept</a></li>
+          <li><a href="#section-7">Message Flow</a></li>
+          <li><a href="#section-8">Required Files</a></li>
+          <li><a href="#section-9">GitHub & Vercel</a></li>
+          <li><a href="#section-10">Connect Webhook</a></li>
+          <li><a href="#section-11">Subscribe Events</a></li>
+          <li><a href="#section-12">Debugging</a></li>
+          <li><a href="#section-13">Final Notes</a></li>
+        </ul>
+      </nav>
+
+      <!-- Sections -->
+      <div class="content-wrapper">
+        <section id="section-1" data-step="1-8">
+          <div class="section-header">
+            <span class="step-badge">Steps 1–8</span>
+            <h2>Create Meta App</h2>
+          </div>
+          <ol>
+            <li>Go to Meta Cloud API</li>
+            <li>Click Create App</li>
+            <li>Choose Business (if possible)</li>
+            <li>Enter App Name (must NOT contain WhatsApp or Meta)</li>
+            <li>Click Create</li>
+            <li>Add contact email</li>
+            <li>Choose WhatsApp product</li>
+            <li>Do not select anything else, click Next</li>
+          </ol>
+        </section>
+
+        <section id="section-2" data-step="9-17">
+          <div class="section-header">
+            <span class="step-badge">Steps 9–17</span>
+            <h2>Portfolio Rules & Approval</h2>
+          </div>
+          <ol start="9">
+            <li>Meta will ask about portfolio</li>
+            <li>Portfolio must be connected to business ownership</li>
+            <li>Portfolio must already have approvals</li>
+            <li>Portfolio must NOT have verification issues</li>
+            <li>Creating a new portfolio causes slow approval</li>
+            <li>Must use portfolio already active / verified</li>
+            <li>One portfolio can be used for more than one app</li>
+            <li>When asked publish requirements, click Next</li>
+            <li>Click Go to Dashboard</li>
+          </ol>
+        </section>
+
+        <section id="section-3" data-step="18-26">
+          <div class="section-header">
+            <span class="step-badge">Steps 18–26</span>
+            <h2>WhatsApp Dashboard Setup</h2>
+          </div>
+          <ol start="18">
+            <li>In dashboard go to WhatsApp → API Setup</li>
+            <li>Create temporary token (valid 1 hour)</li>
+            <li>Copy and save the token (you will need it later)</li>
+            <li>Save test phone number</li>
+            <li>Save phone number ID</li>
+            <li>Save WhatsApp Business Account ID</li>
+            <li>Go to Webhook → Configuration</li>
+            <li>Before configuration, you must deploy server to Vercel</li>
+            <li>When creating new token, it must be linked with same IDs</li>
+          </ol>
+        </section>
+
+        <section id="section-4" data-step="27-30">
+          <div class="section-header">
+            <span class="step-badge">Steps 27–30</span>
+            <h2>Testing & Tokens</h2>
+          </div>
+          <ol start="27">
+            <li>After generating token, send message to WhatsApp</li>
+            <li>Send it through API dashboard to make sure it's connected</li>
+            <li>Using real number requires real approvals</li>
+            <li>In future, create permanent token</li>
+          </ol>
+        </section>
+
+        <section id="section-5" data-step="31-35">
+          <div class="section-header">
+            <span class="step-badge">Steps 31–35</span>
+            <h2>Auto Reply Logic</h2>
+          </div>
+          <ol start="31">
+            <li>We want WhatsApp to reply automatically</li>
+            <li>We need to create webhook server (code)</li>
+            <li>Host it on Vercel</li>
+            <li>Connect webhook to Meta (WhatsApp Cloud API)</li>
+            <li>WhatsApp does NOT auto reply by itself</li>
+          </ol>
+        </section>
+
+        <section id="section-6" data-step="36-39">
+          <div class="section-header">
+            <span class="step-badge">Steps 36–39</span>
+            <h2>Webhook Concept</h2>
+          </div>
+          <ol start="36">
+            <li>WhatsApp sends events to our server</li>
+            <li>So we must create a webhook API</li>
+            <li>Webhook is just an HTTP endpoint like:</li>
+          </ol>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Webhook URL Example</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>https://your-app.vercel.app/webhook</code></pre>
+          </div>
+
+          <ul>
+            <li>Meta will call this URL</li>
+            <li>Meta sends JSON when someone sends a message</li>
+          </ul>
+
+          <ol start="39">
+            <li>We will use Node.js, GitHub, and Vercel</li>
+          </ol>
+        </section>
+
+        <section id="section-7" data-step="40">
+          <div class="section-header">
+            <span class="step-badge">Step 40</span>
+            <h2>Message Flow</h2>
+          </div>
+          <ol start="40">
+            <li>
+              When user sends "hello":
+              <ul>
+                <li>Meta sends webhook event</li>
+                <li>Server receives it</li>
+                <li>Server reads message</li>
+                <li>Server calls WhatsApp API</li>
+                <li>Reply is sent</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section id="section-8" data-step="41">
+          <div class="section-header">
+            <span class="step-badge">Step 41</span>
+            <h2>Required Files</h2>
+          </div>
+          <ol start="41">
+            <li>
+              Files needed:
+              <ul>
+                <li>index.js</li>
+                <li>package.json</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section id="section-9" data-step="42-47">
+          <div class="section-header">
+            <span class="step-badge">Steps 42–47</span>
+            <h2>GitHub & Vercel Deployment</h2>
+          </div>
+          <ol start="42">
+            <li>Create GitHub repository</li>
+            <li>Push the project</li>
+            <li>Go to vercel.com</li>
+            <li>Import GitHub repository</li>
+            <li>Add environment variables:</li>
+          </ol>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Environment Variables</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>WHATSAPP_TOKEN = your_access_token
+PHONE_NUMBER_ID = test_phone_number_id</code></pre>
+          </div>
+
+          <ol start="47">
+            <li>Deploy → you will get https://your-app.vercel.app</li>
+          </ol>
+        </section>
+
+        <section id="section-10" data-step="48-54">
+          <div class="section-header">
+            <span class="step-badge">Steps 48–54</span>
+            <h2>Connect Webhook in Meta</h2>
+          </div>
+          <ol start="48">
+            <li>Connect webhook in Meta Dashboard</li>
+            <li>WhatsApp → Configuration → Webhooks</li>
+            <li>Set verify token = my_verify_token</li>
+            <li>Click Verify and Save</li>
+            <li>Environment variables:</li>
+          </ol>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Complete Environment Variables</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>WHATSAPP_TOKEN = meta_access_token
+PHONE_NUMBER_ID = phone_number_id
+VERIFY_TOKEN = my_verify_token</code></pre>
+          </div>
+
+          <ol start="53">
+            <li>Click Deploy</li>
+            <li>Use deployed URL in callback URL</li>
+          </ol>
+        </section>
+
+        <section id="section-11" data-step="55-56">
+          <div class="section-header">
+            <span class="step-badge">Steps 55–56</span>
+            <h2>Subscribe to Events</h2>
+          </div>
+          <ol start="55">
+            <li>Subscribe to events</li>
+            <li>
+              Select:
+              <ul>
+                <li>messages (primary)</li>
+                <li>message_status (optional)</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section id="section-12" data-step="57-60">
+          <div class="section-header">
+            <span class="step-badge">Steps 57–60</span>
+            <h2>Debugging & HTTP Methods</h2>
+          </div>
+          <ol start="57">
+            <li>If anything goes wrong, check logs</li>
+            <li>Meta uses GET and POST</li>
+            <li>GET /webhook → verification</li>
+            <li>POST /webhook → incoming messages</li>
+          </ol>
+        </section>
+
+        <section id="section-13" data-step="61-63">
+          <div class="section-header">
+            <span class="step-badge">Steps 61–63</span>
+            <h2>Final Important Notes</h2>
+          </div>
+          <ol start="61">
+            <li>Do NOT toggle anything</li>
+            <li>Click Save</li>
+            <li>The bot will reply</li>
+          </ol>
+        </section>
+      </div>
+
+      <!-- Back to Top Button -->
+      <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M18 15l-6-6-6 6" />
+        </svg>
+      </button>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>WhatsApp Cloud API Documentation</p>
+        <p class="footer-subtitle">Built with ❤️ for developers</p>
+      </div>
+    </footer>
+  </body>
+</html>
