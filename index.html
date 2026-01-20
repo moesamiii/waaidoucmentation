@@ -6,6 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
+    <style>
+      .info-box {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      .warning-box {
+        background: #fff3e0;
+        border-left: 4px solid #ff9800;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      .success-box {
+        background: #e8f5e9;
+        border-left: 4px solid #4caf50;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      .info-box h4,
+      .warning-box h4,
+      .success-box h4 {
+        margin-top: 0;
+      }
+    </style>
   </head>
   <body>
     <!-- Background Pattern -->
@@ -39,7 +67,7 @@
           </svg>
         </div>
         <h1>WhatsApp Cloud API Documentation</h1>
-        <p>Complete step-by-step guide (1 → 63)</p>
+        <p>Complete step-by-step guide (1 → 63+)</p>
         <div class="header-badges">
           <span class="badge">Meta Official</span>
           <span class="badge">Cloud API</span>
@@ -63,6 +91,7 @@
           <li><a href="#section-2">Portfolio & Approval</a></li>
           <li><a href="#section-3">Dashboard Setup</a></li>
           <li><a href="#section-4">Testing & Tokens</a></li>
+          <li><a href="#section-4-permanent">🔐 Permanent Token</a></li>
           <li><a href="#section-5">Auto Reply Logic</a></li>
           <li><a href="#section-6">Webhook Concept</a></li>
           <li><a href="#section-7">Message Flow</a></li>
@@ -141,6 +170,171 @@
             <li>Using real number requires real approvals</li>
             <li>In future, create permanent token</li>
           </ol>
+        </section>
+
+        <section id="section-4-permanent" data-step="30a-30g">
+          <div class="section-header">
+            <span class="step-badge">Steps 30a–30g</span>
+            <h2>🔐 Create Permanent Token (Never Expires)</h2>
+          </div>
+
+          <div class="info-box">
+            <h4>
+              ⚠️ Important: The 1-hour token is NOT suitable for production!
+            </h4>
+            <p>
+              You need a permanent token that never expires. Here's how to
+              create one:
+            </p>
+          </div>
+
+          <h3>Option 1: System User Token (Recommended ✅)</h3>
+          <p>
+            This is the best method for production - the token never expires!
+          </p>
+
+          <ol start="30a">
+            <li>
+              Go to Meta Business Settings:
+              <a href="https://business.facebook.com/settings/" target="_blank"
+                >https://business.facebook.com/settings/</a
+              >
+            </li>
+            <li>Click on "Users" → "System Users" in the left sidebar</li>
+            <li>
+              Click "Add" button to create a new system user
+              <ul>
+                <li>Give it a name (e.g., "WhatsApp Bot System User")</li>
+                <li>Choose "Admin" role</li>
+                <li>Click "Create System User"</li>
+              </ul>
+            </li>
+            <li>Click on the system user you just created</li>
+            <li>
+              Click "Generate New Token" button
+              <ul>
+                <li>Select your App from the dropdown</li>
+                <li>
+                  Select these permissions:
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="code-label">Required Permissions</span>
+                    </div>
+                    <pre><code>✓ whatsapp_business_messaging
+✓ whatsapp_business_management</code></pre>
+                  </div>
+                </li>
+                <li>Click "Generate Token"</li>
+              </ul>
+            </li>
+            <li>
+              Copy the token immediately and save it securely
+              <div class="warning-box">
+                <strong>⚠️ Warning:</strong> This token will only be shown once!
+                Save it now.
+              </div>
+            </li>
+            <li>This token NEVER expires (unless you manually revoke it)</li>
+          </ol>
+
+          <h3>Option 2: Long-Lived User Token (60 Days)</h3>
+          <p>
+            If you can't create a System User, exchange your 1-hour token for a
+            60-day token:
+          </p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">API Call to Exchange Token</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>curl -i -X GET "https://graph.facebook.com/v21.0/oauth/access_token?grant_type=fb_exchange_token&client_id=YOUR_APP_ID&client_secret=YOUR_APP_SECRET&fb_exchange_token=YOUR_SHORT_LIVED_TOKEN"</code></pre>
+          </div>
+
+          <p>Replace the following:</p>
+          <ul>
+            <li><code>YOUR_APP_ID</code> → Find in App Settings → Basic</li>
+            <li>
+              <code>YOUR_APP_SECRET</code> → Find in App Settings → Basic (click
+              "Show")
+            </li>
+            <li>
+              <code>YOUR_SHORT_LIVED_TOKEN</code> → The 1-hour token you
+              currently have
+            </li>
+          </ul>
+
+          <div class="success-box">
+            <h4>✅ Best Practice for Production:</h4>
+            <p>Always use <strong>System User Token</strong> because:</p>
+            <ul>
+              <li>✓ Never expires</li>
+              <li>✓ Not tied to a specific user</li>
+              <li>✓ More secure for server-to-server communication</li>
+              <li>✓ Recommended by Meta for production apps</li>
+            </ul>
+          </div>
+
+          <h3>How to Store Token Securely</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">.env File (DON'T COMMIT THIS!)</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># WhatsApp API Configuration
+WHATSAPP_TOKEN=YOUR_PERMANENT_TOKEN_HERE
+PHONE_NUMBER_ID=112887458534900
+WHATSAPP_BUSINESS_ACCOUNT_ID=101331186371428
+VERIFY_TOKEN=my_verify_token</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Usage in Code (index.js)</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>// Load environment variables
+require('dotenv').config();
+
+const token = process.env.WHATSAPP_TOKEN;
+const phoneNumberId = process.env.PHONE_NUMBER_ID;
+
+// Use the token in API calls
+const response = await fetch(`https://graph.facebook.com/v21.0/${phoneNumberId}/messages`, {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    messaging_product: 'whatsapp',
+    to: recipientPhone,
+    text: { body: 'Hello from permanent token!' }
+  })
+});</code></pre>
+          </div>
+
+          <div class="warning-box">
+            <h4>🔒 Security Checklist:</h4>
+            <ul>
+              <li>✓ Never commit .env file to GitHub</li>
+              <li>✓ Add .env to .gitignore</li>
+              <li>✓ Use environment variables in Vercel dashboard</li>
+              <li>✓ Rotate tokens if they are ever exposed</li>
+            </ul>
+          </div>
+
+          <h3>Add to .gitignore</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">.gitignore</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>.env
+.env.local
+node_modules/
+.vercel</code></pre>
+          </div>
         </section>
 
         <section id="section-5" data-step="31-35">
